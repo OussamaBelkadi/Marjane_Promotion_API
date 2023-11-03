@@ -1,10 +1,7 @@
 package ma.yc.marjane.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +19,12 @@ public class Rayon {
     private String nom;
     private String description;
     private String image;
-    @OneToMany
-    private Collection<Categorie> categories = new ArrayList<>();
+    @OneToOne(mappedBy = "rayon")
+    private Categorie categorie;
     @OneToOne
     private Responsable responsable;
+
+    @ManyToOne
+    private Centre centre;
 
 }

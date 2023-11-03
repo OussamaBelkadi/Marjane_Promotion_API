@@ -1,22 +1,20 @@
 package ma.yc.marjane.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class  User {
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public  class  User {
 
     private String nom;
     private String prenom;
-    @Id
     private String email;
     private String password;
     private String username;

@@ -1,6 +1,7 @@
 package ma.yc.marjane.config;
 
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.springframework.context.annotation.Bean;
@@ -9,13 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Configuration
@@ -40,10 +38,10 @@ public class AppConfig  implements WebMvcConfigurer {
         return Persistence.createEntityManagerFactory("default");
     }
 
-//    @Bean
-//    EntityManager entityManager(EntityManagerFactory entityManagerFactory){
-//        return entityManagerFactory.createEntityManager();
-//    }
+    @Bean
+    EntityManager entityManager(EntityManagerFactory entityManagerFactory){
+        return entityManagerFactory.createEntityManager();
+    }
 
 //    @Bean
 //    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {

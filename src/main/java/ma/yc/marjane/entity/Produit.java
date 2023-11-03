@@ -26,7 +26,11 @@ public class Produit {
     private double prix ;
     private int quantite ;
     @ManyToOne
-    private Categorie categories ;
+    @JoinColumn(name = "categorie_id")
+    private Categorie categorie;
+    @ManyToOne
+    @JoinColumn(name = "promotion_id")
+    private Promotion promotion;
 
 }
 

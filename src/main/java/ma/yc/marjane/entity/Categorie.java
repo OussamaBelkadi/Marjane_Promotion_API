@@ -19,14 +19,21 @@ public class Categorie {
     private String description;
     private String image;
     private String slug;
-    @OneToMany()
+    @OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL)
     Collection<Produit> produits = new ArrayList<>();
+
+
     @ManyToMany
+    @JoinTable(
+            name = "categorie_centre",
+            joinColumns = { @JoinColumn(name = "categorie_id") },
+            inverseJoinColumns = { @JoinColumn(name = "center_id") }
+    )
     private Collection<Centre> centres = new ArrayList<>();
-    @ManyToOne
+
+    @OneToOne()
+    @JoinColumn(name = "rayon_id")
     private Rayon rayon;
-    @OneToMany
-    private Collection<Promotion> promotions = new ArrayList<>();
 
 
 

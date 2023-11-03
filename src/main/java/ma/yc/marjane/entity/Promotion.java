@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.yc.marjane.enums.StatusPromotion;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -28,8 +29,8 @@ public class Promotion {
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
-    @ManyToMany
-    private Collection<Produit> produits;
+    @OneToMany(mappedBy = "promotion")
+    private Collection<Produit> produits = new ArrayList<>();
 
 
 }

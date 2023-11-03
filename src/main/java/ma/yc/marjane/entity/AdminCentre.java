@@ -12,10 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-public class Admin_Centre extends User{
+@Table(name = "admin_centre")
+public class AdminCentre {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
+
+    private String username;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String password;
     @ManyToOne
     private Ville ville ;
     @OneToOne

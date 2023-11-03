@@ -1,9 +1,6 @@
 package ma.yc.marjane.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +21,7 @@ public class Ville {
     private int id;
     private String nom;
     private String codePostal;
-    @OneToMany
+    @OneToMany(mappedBy = "ville")
     private Collection<Centre> centres = new ArrayList<>();
 
 

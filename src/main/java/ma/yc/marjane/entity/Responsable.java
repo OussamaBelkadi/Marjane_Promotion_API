@@ -11,14 +11,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class Responsable extends User{
+public class Responsable {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String password;
+    private String username;
     @ManyToOne
     private Ville ville;
     @ManyToOne
+    @JoinColumn(name="centre_id")
     private Centre  centre;
 
     @OneToOne
