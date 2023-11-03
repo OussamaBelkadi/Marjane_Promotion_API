@@ -2,33 +2,44 @@ package ma.yc.marjane.controller.AdminGeneral;
 
 import ma.yc.marjane.dto.UserDto;
 import ma.yc.marjane.services.AuthentificationService;
+import ma.yc.marjane.services.impl.AdminGeneralAuthentificationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/adminGeneral/login")
+@RequestMapping("/api/v1/adminGeneral")
 public class LoginController {
 
 
     @Autowired
+    @Qualifier("AdminGeneralAuthentificationService")
     private AuthentificationService authentificationService;
 
-    @PostMapping
-    public UserDto login(UserDto userDto){
-        return userDto;
+    @PostMapping("/login")
+    public UserDto login(@RequestBody UserDto userDto){
+        return this.authentificationService.login(userDto);
 //        return this.authentificationService.login(userDto);
     }
 
-    @GetMapping
-    public UserDto get(){
-        return UserDto.builder()
-                .email("email@example.com")
-                .password("password")
-                .build();
+    @PostMapping("/register")
+    public UserDto register(@RequestBody  UserDto userDto){
+        return authentificationService.register(userDto);
     }
 
+    @GetMapping("/logout")
+    public boolean logout(){
+        return authentificationService.logout();
+    }
+
+    @GetMapping("/resetPassword")
+    public boolean resetPassword(){
+        return false;
+    }
+
+    @GetMapping("/refershToken")
+    public boolean refershToken(){
+        return false;
+    }
 
 }
