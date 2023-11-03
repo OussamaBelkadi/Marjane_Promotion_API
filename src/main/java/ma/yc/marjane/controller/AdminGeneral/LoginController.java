@@ -1,4 +1,4 @@
-package ma.yc.marjane.controller;
+package ma.yc.marjane.controller.AdminGeneral;
 
 import ma.yc.marjane.dto.UserDto;
 import ma.yc.marjane.services.AuthentificationService;
