@@ -2,14 +2,13 @@ package ma.yc.marjane.controller.AdminGeneral;
 
 import ma.yc.marjane.dto.UserDto;
 import ma.yc.marjane.services.AuthentificationService;
-import ma.yc.marjane.services.impl.AdminGeneralAuthentificationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/adminGeneral")
-public class LoginController {
+@RequestMapping("/api/v1/admin-general")
+public class AuthController {
 
 
     @Autowired

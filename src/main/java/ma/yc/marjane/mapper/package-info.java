@@ -1,1 +1,0 @@
-package ma.yc.marjane.mapper;
