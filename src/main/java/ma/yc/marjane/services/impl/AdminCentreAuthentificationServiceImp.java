@@ -8,7 +8,6 @@ import ma.yc.marjane.repository.AdminCentreAuthetificationRepository;
 import ma.yc.marjane.services.AuthentificationService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service("AdminCentreAuthentificationServiceImp")
@@ -17,7 +16,7 @@ public class AdminCentreAuthentificationServiceImp implements AuthentificationSe
 
 //    private final AdminCentreDto adminCentreDto = new AdminCentreDto();
 
-    private AdminCentreAuthetificationRepository adminCentreAuthetificationRepository;
+    private final AdminCentreAuthetificationRepository adminCentreAuthetificationRepository;
     @Autowired
     public AdminCentreAuthentificationServiceImp( AdminCentreAuthetificationRepository adminCentreAuthetificationRepository){
         this.adminCentreAuthetificationRepository = adminCentreAuthetificationRepository;

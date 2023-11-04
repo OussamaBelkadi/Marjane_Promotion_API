@@ -1,13 +1,9 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
 import ma.yc.marjane.dto.projectDto.AdminGeneralDto;
-import ma.yc.marjane.entity.AdminCentre;
 import ma.yc.marjane.entity.AdminGeneral;
-import ma.yc.marjane.mapper.AdminCentreMapper;
 import ma.yc.marjane.mapper.AdminGeneralMapper;
-import ma.yc.marjane.repository.AdminCentreAuthetificationRepository;
 import ma.yc.marjane.repository.AdminGeneralAuthentificationRespository;
 import ma.yc.marjane.services.AuthentificationService;
 import org.mindrot.jbcrypt.BCrypt;
