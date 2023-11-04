@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 
 @Service("AdminCentreAuthentificationServiceImp")
 @Transactional
-@Primary
 public class AdminCentreAuthentificationServiceImp implements AuthentificationService<AdminCentreDto, AdminCentre>{
 
-    private final AdminCentreDto adminCentreDto = new AdminCentreDto();
+//    private final AdminCentreDto adminCentreDto = new AdminCentreDto();
 
     private AdminCentreAuthetificationRepository adminCentreAuthetificationRepository;
     @Autowired
