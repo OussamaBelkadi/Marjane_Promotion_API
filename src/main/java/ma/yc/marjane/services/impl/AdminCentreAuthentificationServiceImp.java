@@ -3,19 +3,18 @@ package ma.yc.marjane.services.impl;
 import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.projectDto.AdminCentreDto;
 import ma.yc.marjane.entity.AdminCentre;
-import ma.yc.marjane.exception.CustomException;
 import ma.yc.marjane.mapper.AdminCentreMapper;
 import ma.yc.marjane.repository.AdminCentreAuthetificationRepository;
 import ma.yc.marjane.services.AuthentificationService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service("AdminCentreAuthentificationServiceImp")
 @Transactional
-@Qualifier("adminCentre")
-public class AdminCentreAuthentificationServiceImp implements AuthentificationService {
+@Primary
+public class AdminCentreAuthentificationServiceImp implements AuthentificationService<AdminCentreDto, AdminCentre>{
 
     private final AdminCentreDto adminCentreDto = new AdminCentreDto();
 
@@ -24,14 +23,24 @@ public class AdminCentreAuthentificationServiceImp implements AuthentificationSe
     public AdminCentreAuthentificationServiceImp( AdminCentreAuthetificationRepository adminCentreAuthetificationRepository){
         this.adminCentreAuthetificationRepository = adminCentreAuthetificationRepository;
     }
-    @Override
-    public Object login(Object o) throws CustomException {
-        return null;
-    }
 
     @Override
     public boolean logout() {
         return false;
+    }
+
+
+    @Override
+    public boolean login(AdminCentreDto adminCentreDto) {
+        boolean result = false;
+        AdminCentre adminCentre = AdminCentreMapper.adminCentreMapper.toEntity(adminCentreDto);
+        AdminCentre adminCentreRslt =adminCentreAuthetificationRepository.findByEmail(adminCentre.getEmail());
+        if(adminCentreRslt != null){
+            if (BCrypt.checkpw(adminCentre.getPassword(), adminCentreRslt.getPassword())){
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override

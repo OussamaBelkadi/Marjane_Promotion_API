@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdminCentreAuthetificationRepository extends JpaRepository<AdminCentre, Long> {
+    public AdminCentre findByEmail(String email);
 }

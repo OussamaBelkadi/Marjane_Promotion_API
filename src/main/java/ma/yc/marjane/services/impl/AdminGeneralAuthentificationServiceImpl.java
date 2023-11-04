@@ -5,9 +5,10 @@ import ma.yc.marjane.dto.projectDto.AdminCentreDto;
 import ma.yc.marjane.entity.AdminCentre;
 import ma.yc.marjane.exception.CustomException;
 import ma.yc.marjane.services.AuthentificationService;
+import org.mapstruct.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("AdminGeneralAuthentificationServiceImpl")
 @Transactional
 public class AdminGeneralAuthentificationServiceImpl implements AuthentificationService {
 
@@ -38,9 +39,10 @@ public class AdminGeneralAuthentificationServiceImpl implements Authentification
 //    }
 
     @Override
-    public Object login(Object o) throws CustomException {
-        return null;
+    public boolean login(Object o) {
+        return false;
     }
+
 
     @Override
     public boolean logout() {
@@ -48,7 +50,7 @@ public class AdminGeneralAuthentificationServiceImpl implements Authentification
     }
 
     @Override
-    public AdminCentre register(AdminCentreDto adminCentreDto) {
-        return false;
+    public Object register(Object o) {
+        return null;
     }
 }
