@@ -1,7 +1,7 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
-import ma.yc.marjane.dto.PromotionDto;
+import ma.yc.marjane.dto.projectDto.PromotionDto;
 import ma.yc.marjane.repository.PromotionRepository;
 import ma.yc.marjane.services.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,20 @@ public class PromotionServiceImpl implements PromotionService {
         this.promotionRepository = promotionRepository;
     }
 
-    @Override
-    public List<PromotionDto> getAll() {
-        List<PromotionDto> promotionDtos = new ArrayList<>();
-        this.promotionRepository.findAll().forEach(promotion -> {
-            promotionDtos.add(PromotionDto.builder()
-                    .id(promotion.getId())
-                    .dateDebut(promotion.getDateDebut())
-                    .status(promotion.getStatus())
-                    .dateFin(promotion.getDateFin())
-                    .description(promotion.getDescription())
-                    .build());
-        });
-
-        return promotionDtos;
-    }
+//    @Override
+//    public List<PromotionDto> getAll() {
+//        List<PromotionDto> promotionDtos = new ArrayList<>();
+//        this.promotionRepository.findAll().forEach(promotion -> {
+//            promotionDtos.add(PromotionDto.builder()
+//                    .dateDebut(promotion.getDateDebut())
+//                    .status(promotion.getStatus())
+//                    .dateFin(promotion.getDateFin())
+//                    .description(promotion.getDescription())
+//                    .build());
+//        });
+//
+//        return promotionDtos;
+//    }
 
 
 }

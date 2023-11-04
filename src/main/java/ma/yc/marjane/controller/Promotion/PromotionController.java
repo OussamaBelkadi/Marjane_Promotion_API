@@ -1,7 +1,6 @@
 package ma.yc.marjane.controller.Promotion;
 
 
-import ma.yc.marjane.dto.PromotionDto;
 import ma.yc.marjane.services.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
