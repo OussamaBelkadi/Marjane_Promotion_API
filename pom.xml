@@ -92,21 +92,24 @@
                 <artifactId>spring-tx</artifactId>
                 <version>6.0.10</version>
             </dependency>
-
-            <!-- Library Provide Mapper -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>1.5.3.Final</version>
+                <version>1.5.5.Final</version>
             </dependency>
-            <!-- Library for Hashing-->
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>1.5.5.Final</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.mindrot</groupId>
                 <artifactId>jbcrypt</artifactId>
                 <version>0.4</version>
             </dependency>
-
-
         </dependencies>
 
     <build>

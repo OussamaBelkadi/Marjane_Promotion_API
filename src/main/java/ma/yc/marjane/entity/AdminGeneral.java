@@ -1,9 +1,7 @@
 package ma.yc.marjane.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +20,8 @@ public class AdminGeneral {
     private int id;
     private String nom;
     private String prenom;
+    @Email
+    @Column(unique=true)
     private String email;
     private String password;
     private String username;

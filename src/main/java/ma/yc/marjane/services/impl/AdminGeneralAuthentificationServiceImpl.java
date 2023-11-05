@@ -1,53 +1,46 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
+import jdk.jshell.execution.Util;
+import ma.yc.marjane.dto.UserDto;
 import ma.yc.marjane.dto.projectDto.AdminGeneralDto;
 import ma.yc.marjane.entity.AdminGeneral;
+import ma.yc.marjane.entity.User;
 import ma.yc.marjane.mapper.AdminGeneralMapper;
 import ma.yc.marjane.repository.AdminGeneralAuthentificationRespository;
 import ma.yc.marjane.services.AuthentificationService;
-import org.mindrot.jbcrypt.BCrypt;
+import ma.yc.marjane.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service("AdminGeneralAuthentificationServiceImpl")
+@Service
 @Transactional
-public class AdminGeneralAuthentificationServiceImpl implements AuthentificationService<AdminGeneralDto, AdminGeneral>{
+@Qualifier("AdminGeneralAuthentificationServiceImpl")
+public class AdminGeneralAuthentificationServiceImpl implements AuthentificationService<AdminGeneralDto> {
 
 
 
-//    @Autowired
-//    private AdminGeneralAuthentificationRespository adminGeneralAuthentificationRespository;
-
-
-
-//    @Override
-//    public UserDto login(UserDto userDto) throws CustomException {
-//        try {
-//
-//        }catch (NullPointerException exception){
-//            throw new CustomException("dssd");
-//        }
-////        User user1 = this.adminGeneralAuthentificationRespository.findByEmail(userDto.getEmail());
-////        if(user1 != null){
-////            if(user1.getPassword().equals(userDto.getPassword())){
-////                return UserDto.builder()
-////                        .email(user1.getEmail())
-////                        .password(user1.getPassword())
-////                        .build();
-////            }
-////        }
-//        return null;
-//    }
-
-   private final AdminGeneralAuthentificationRespository adminGeneralAuthentificationRespository;
     @Autowired
-    public AdminGeneralAuthentificationServiceImpl(AdminGeneralAuthentificationRespository adminGeneralAuthentificationRespository){
-        this.adminGeneralAuthentificationRespository = adminGeneralAuthentificationRespository;
+    private AdminGeneralAuthentificationRespository adminGeneralAuthentificationRespository;
 
+
+
+
+    @Override
+    public AdminGeneralDto login(AdminGeneralDto userDto) {
+        AdminGeneral user1 = this.adminGeneralAuthentificationRespository.findByEmail(userDto.getEmail());
+        if(user1 != null){
+            if(Utils.hashPassword(userDto.getPassword()).equals(user1.getPassword())){
+                AdminGeneralDto adminGeneralDto = new AdminGeneralDto();
+                adminGeneralDto.setEmail(user1.getEmail());
+                adminGeneralDto.setPassword(user1.getPassword());
+                adminGeneralDto.setNom(user1.getNom());
+                return adminGeneralDto;
+            }
+        }
+        return null;
     }
-
-
 
     @Override
     public boolean logout() {
@@ -55,23 +48,10 @@ public class AdminGeneralAuthentificationServiceImpl implements Authentification
     }
 
     @Override
-    public AdminGeneral register(AdminGeneralDto adminGeneralDto) {
+    public AdminGeneralDto register(AdminGeneralDto adminGeneralDto) {
         AdminGeneral adminGeneral = AdminGeneralMapper.adminGeneralMapper.toEntity(adminGeneralDto);
-        adminGeneral.setPassword(BCrypt.hashpw(adminGeneral.getPassword(), BCrypt.gensalt()));
-        adminGeneral = adminGeneralAuthentificationRespository.save(adminGeneral);
-        return adminGeneral;
-    }
-
-    @Override
-    public boolean login(AdminGeneralDto adminGeneralDto) {
-        boolean result = false;
-        AdminGeneral adminGeneral = AdminGeneralMapper.adminGeneralMapper.toEntity(adminGeneralDto);
-        AdminGeneral adminGeneralRslt = adminGeneralAuthentificationRespository.findByEmail(adminGeneral.getEmail());
-        if(adminGeneralRslt != null){
-            if (BCrypt.checkpw(adminGeneral.getPassword(), adminGeneralRslt.getPassword())){
-                result = true;
-            }
-        }
-        return result;
+        adminGeneral.setPassword(Utils.hashPassword(adminGeneral.getPassword()));
+        adminGeneral = this.adminGeneralAuthentificationRespository.save(adminGeneral);
+        return AdminGeneralMapper.adminGeneralMapper.toDto(adminGeneral);
     }
 }

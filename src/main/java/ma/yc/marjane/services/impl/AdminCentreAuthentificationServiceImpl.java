@@ -10,15 +10,15 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("AdminCentreAuthentificationServiceImp")
+@Service("AdminCentreAuthentificationServiceImpl")
 @Transactional
-public class AdminCentreAuthentificationServiceImp implements AuthentificationService<AdminCentreDto, AdminCentre>{
+public class AdminCentreAuthentificationServiceImpl implements AuthentificationService<AdminCentreDto>{
 
 //    private final AdminCentreDto adminCentreDto = new AdminCentreDto();
 
     private final AdminCentreAuthetificationRepository adminCentreAuthetificationRepository;
     @Autowired
-    public AdminCentreAuthentificationServiceImp( AdminCentreAuthetificationRepository adminCentreAuthetificationRepository){
+    public AdminCentreAuthentificationServiceImpl(AdminCentreAuthetificationRepository adminCentreAuthetificationRepository){
         this.adminCentreAuthetificationRepository = adminCentreAuthetificationRepository;
     }
 
@@ -29,7 +29,7 @@ public class AdminCentreAuthentificationServiceImp implements AuthentificationSe
 
 
     @Override
-    public boolean login(AdminCentreDto adminCentreDto) {
+    public AdminCentreDto login(AdminCentreDto adminCentreDto) {
         boolean result = false;
         AdminCentre adminCentre = AdminCentreMapper.adminCentreMapper.toEntity(adminCentreDto);
         AdminCentre adminCentreRslt =adminCentreAuthetificationRepository.findByEmail(adminCentre.getEmail());
@@ -38,15 +38,21 @@ public class AdminCentreAuthentificationServiceImp implements AuthentificationSe
                 result = true;
             }
         }
-        return result;
+        if (result){
+            return AdminCentreMapper.adminCentreMapper.toDto(adminCentreRslt);
+        }
+        else {
+            return null;
+        }
+
     }
 
     @Override
-    public AdminCentre register(AdminCentreDto adminCentreDto) {
+    public AdminCentreDto register(AdminCentreDto adminCentreDto) {
         AdminCentre adminCentre = AdminCentreMapper.adminCentreMapper.toEntity(adminCentreDto);
         adminCentre.setPassword(BCrypt.hashpw(adminCentre.getPassword(), BCrypt.gensalt()));
         adminCentre = adminCentreAuthetificationRepository.save(adminCentre);
-        return adminCentre;
+        return AdminCentreMapper.adminCentreMapper.toDto(adminCentre);
     }
 
 }

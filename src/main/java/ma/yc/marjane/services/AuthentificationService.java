@@ -1,13 +1,13 @@
 package ma.yc.marjane.services;
 
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
+import ma.yc.marjane.dto.UserDto;
 import ma.yc.marjane.entity.AdminCentre;
 import ma.yc.marjane.exception.CustomException;
 
-public interface AuthentificationService <DTO, Entity>{
-//    DTO login(DTO dto) throws CustomException;
+public interface AuthentificationService <D> {
+//    D login(D D) throws CustomException;
     boolean logout();
-    Entity register(DTO dto);
-    boolean login(DTO dto);
+    D register(D d);
+    D login(D d);
 
 }
