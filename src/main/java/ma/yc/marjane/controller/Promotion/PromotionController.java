@@ -24,6 +24,7 @@ public class PromotionController {
 
     @GetMapping
     public List<PromotionDto> getAll(){
-        return this.promotionService.getAll();
+        throw new RuntimeException("not implemented yet");
+//        return this.promotionService.getAll();
     }
 }

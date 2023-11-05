@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/responsable-rayon")
-public class AuthController {
+public class ResponsableAuthController {
 
 
-    @Autowired
-    @Qualifier("ResponsableRayonAuthentificationService")
+
     private AuthentificationService authentificationService;
+
+    public ResponsableAuthController(@Qualifier("ResponsableRayonAuthentificationService") AuthentificationService authentificationService) {
+        this.authentificationService = authentificationService;
+    }
 
     @PostMapping("/login")
     public UserDto login(@RequestBody UserDto userDto){

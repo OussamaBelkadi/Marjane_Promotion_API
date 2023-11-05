@@ -1,26 +1,26 @@
 package ma.yc.marjane.services.impl;
 
+import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.UserDto;
-import ma.yc.marjane.entity.Responsable;
 import ma.yc.marjane.entity.Responsable;
 import ma.yc.marjane.mapper.Mapper;
 import ma.yc.marjane.mapper.impl.ResponsableMapperImpl;
-import ma.yc.marjane.repository.AuthRepository;
+import ma.yc.marjane.repository.ResponsableAuthRepository;
 import ma.yc.marjane.services.AuthentificationService;
 import ma.yc.marjane.util.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 @Qualifier("ResponsableRayonAuthentificationService")
+@Transactional
 public class ResponsableRayonAuthentificationServiceImpl implements AuthentificationService {
 
 
-    private AuthRepository<Responsable , Long> responsableAuthRepository;
+    private ResponsableAuthRepository responsableAuthRepository;
     private final Mapper<Responsable,UserDto> responsableMapper =  new ResponsableMapperImpl();
-    @Autowired
-    public ResponsableRayonAuthentificationServiceImpl(AuthRepository<Responsable, Long> responsableAuthRepository) {
+//    @Autowired
+    public ResponsableRayonAuthentificationServiceImpl(ResponsableAuthRepository responsableAuthRepository) {
         this.responsableAuthRepository = responsableAuthRepository;
     }
     @Override
