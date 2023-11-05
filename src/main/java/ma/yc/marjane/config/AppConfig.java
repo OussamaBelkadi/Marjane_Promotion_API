@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import ma.yc.marjane.dto.ErrorResponse;
 import ma.yc.marjane.exception.ApplicationExceptionHandler;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Configuration
@@ -82,6 +84,13 @@ public class AppConfig  implements WebMvcConfigurer {
 //    @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+        ErrorResponse errorResponse = new ErrorResponse("An error occurred", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(SQLException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ErrorResponse> handleSqlExceptionHelper(SQLException ex) {
         ErrorResponse errorResponse = new ErrorResponse("An error occurred", ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }

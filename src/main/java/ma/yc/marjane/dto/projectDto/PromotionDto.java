@@ -1,5 +1,4 @@
-package ma.yc.marjane.dto;
-
+package ma.yc.marjane.dto.projectDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +7,16 @@ import lombok.NoArgsConstructor;
 import ma.yc.marjane.enums.StatusPromotion;
 
 import java.util.Date;
-
-//
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class PromotionDto {
-private Long id;
+    private Date createdAt;
+    private Date updatedAt;
     private Double precentage;
     private String description;
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
-
 }

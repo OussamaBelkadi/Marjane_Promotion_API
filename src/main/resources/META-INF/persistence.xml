@@ -15,7 +15,7 @@
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/promotion_db"/>
             <property name="jakarta.persistence.jdbc.user" value="pc"/>
             <property name="jakarta.persistence.jdbc.password" value="password"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
 <!--            <property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/promotion_db"/>-->
 <!--            <property name="hibernate.connection.username" value="pc"/>-->

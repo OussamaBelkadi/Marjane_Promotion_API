@@ -2,6 +2,7 @@ package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.UserDto;
+import ma.yc.marjane.dto.projectDto.ResponsableDto;
 import ma.yc.marjane.entity.Responsable;
 import ma.yc.marjane.mapper.Mapper;
 import ma.yc.marjane.mapper.impl.ResponsableMapperImpl;
@@ -14,22 +15,23 @@ import org.springframework.stereotype.Service;
 @Service
 @Qualifier("ResponsableRayonAuthentificationService")
 @Transactional
-public class ResponsableRayonAuthentificationServiceImpl implements AuthentificationService {
+public class ResponsableRayonAuthentificationServiceImpl implements AuthentificationService<ResponsableDto> {
 
 
     private ResponsableAuthRepository responsableAuthRepository;
-    private final Mapper<Responsable,UserDto> responsableMapper =  new ResponsableMapperImpl();
+    private  Mapper<Responsable,ResponsableDto> responsableMapper ;
 //    @Autowired
     public ResponsableRayonAuthentificationServiceImpl(ResponsableAuthRepository responsableAuthRepository) {
         this.responsableAuthRepository = responsableAuthRepository;
     }
     @Override
-    public UserDto login(UserDto userDto) {
-        Responsable Responsable = this.responsableAuthRepository.findByEmail(userDto.getEmail());
+    public ResponsableDto login(ResponsableDto responsableDto) {
+        Responsable Responsable = this.responsableAuthRepository.findByEmail(responsableDto.getEmail());
         if (Responsable !=null){
             // TODO: 3/11/2023 check password after you hash it
-            if (Utils.checkPassword(userDto.getPassword(),Responsable.getPassword())){
+            if (Utils.checkPassword(responsableDto.getPassword(),Responsable.getPassword())){
                 // TODO: 3/11/2023 mapper the user1 to userDto
+//                return true;
                 return this.responsableMapper.toDto(Responsable);
             }
             return  null;
@@ -44,7 +46,9 @@ public class ResponsableRayonAuthentificationServiceImpl implements Authentifica
     }
 
     @Override
-    public UserDto register(UserDto userDto) {
+    public ResponsableDto register(ResponsableDto responsableDto) {
         return null;
     }
+
+
 }

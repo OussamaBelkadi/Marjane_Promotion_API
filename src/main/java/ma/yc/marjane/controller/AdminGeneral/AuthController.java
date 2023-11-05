@@ -1,6 +1,9 @@
 package ma.yc.marjane.controller.AdminGeneral;
 
 import ma.yc.marjane.dto.UserDto;
+import ma.yc.marjane.dto.projectDto.AdminCentreDto;
+import ma.yc.marjane.dto.projectDto.AdminGeneralDto;
+import ma.yc.marjane.entity.AdminGeneral;
 import ma.yc.marjane.services.AuthentificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,18 +16,19 @@ public class AuthController {
 
 
     @Autowired
-    @Qualifier("AdminGeneralAuthentificationService")
-    private AuthentificationService authentificationService;
+    @Qualifier("AdminGeneralAuthentificationServiceImpl")
+    private AuthentificationService<AdminGeneralDto> authentificationService;
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody UserDto userDto){
-        return ResponseEntity.ok(this.authentificationService.login(userDto));
+    public AdminGeneralDto login(@RequestBody AdminGeneralDto adminGeneralDto){
+        return this.authentificationService.login(adminGeneralDto);
 //        return this.authentificationService.login(userDto);
     }
 
     @PostMapping("/register")
-    public UserDto register(@RequestBody  UserDto userDto){
-        return authentificationService.register(userDto);
+    public AdminGeneralDto register(@RequestBody AdminGeneralDto adminGeneralDto){
+        AdminGeneralDto adminGeneralDto1 = adminGeneralDto;
+        return authentificationService.register(adminGeneralDto);
     }
 
     @GetMapping("/logout")
