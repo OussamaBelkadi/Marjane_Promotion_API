@@ -6,4 +6,5 @@ public interface AuthentificationService {
     public UserDto login(UserDto userDto);
     public boolean logout();
 
+    UserDto register(UserDto userDto);
 }
