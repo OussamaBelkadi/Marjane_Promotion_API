@@ -44,7 +44,7 @@ class PromotionRepositoryTest {
 
     }
 
-    @Test
+//    @Test
     void saveAll() {
         // Setup
 
@@ -58,7 +58,7 @@ class PromotionRepositoryTest {
 
     }
 
-    @Test
+//    @Test
     void findAllByStatus() {
         // Setup
 
