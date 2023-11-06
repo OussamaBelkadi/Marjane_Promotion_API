@@ -27,4 +27,5 @@ public class PromotionController {
 //        throw new RuntimeException("not implemented yet");
         return this.promotionService.getAll();
     }
+
 }
