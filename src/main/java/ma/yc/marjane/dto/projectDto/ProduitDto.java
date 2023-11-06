@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ProduitDto {
+    private int id_pdt;
     private String nom ;
     private String description ;
     private String image ;

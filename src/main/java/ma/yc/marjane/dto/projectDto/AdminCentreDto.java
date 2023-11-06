@@ -14,6 +14,6 @@ public class AdminCentreDto {
     private String nom;
     private String prenom;
     private String email;
-    private int id_centre;
+    private Long id_admCentre;
 
 }
