@@ -1,6 +1,6 @@
 package ma.yc.marjane.dto;
 
-public  class ErrorResponse extends RuntimeException {
+public  class ErrorResponse {
         private String message;
         private String details;
 

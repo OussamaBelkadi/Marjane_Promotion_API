@@ -1,7 +1,7 @@
 package ma.yc.marjane.services;
 
-import ma.yc.marjane.dto.projectDto.ProduitDto;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
+import ma.yc.marjane.dto.ProduitDto;
+import ma.yc.marjane.dto.PromotionDto;
 
 import java.util.List;
 

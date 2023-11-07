@@ -81,10 +81,7 @@ components:
       properties: 
         id:
           type: integer
-          description: id promotion 
-          examples: 
-            - 4555
-            - 94472209
+          description: id promotion
         status:
           $ref: '#/components/schemas/StatusPromotion'
     StatusPromotion:

@@ -1,15 +1,17 @@
-package ma.yc.marjane.dto.projectDto;
+package ma.yc.marjane.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class VilleDto {
+@Builder
+public class CategorieDto {
     private String nom;
-    private String codePostal;
+    private String description;
+    private String image;
+    private String slug;
 }

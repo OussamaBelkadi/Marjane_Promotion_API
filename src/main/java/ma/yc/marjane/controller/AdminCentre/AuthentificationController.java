@@ -1,6 +1,6 @@
 package ma.yc.marjane.controller.AdminCentre;
 
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
+import ma.yc.marjane.dto.AdminCentreDto;
 import ma.yc.marjane.services.AuthentificationService;
 import ma.yc.marjane.services.impl.AdminCentreAuthentificationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

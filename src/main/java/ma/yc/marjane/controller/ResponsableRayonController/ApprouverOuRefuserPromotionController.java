@@ -23,7 +23,7 @@ public class ApprouverOuRefuserPromotionController {
 
     @PostMapping()
     public ResponsablePromotionResponse approuverOuRefuserPromotion(@RequestBody ResponsablePromotionRequest responsablePromotionRequest){
-        return   this.responsablePromotionService.ApprouverOuRefuserPromotion(responsablePromotionRequest);
+        return  this.responsablePromotionService.ApprouverOuRefuserPromotion(responsablePromotionRequest);
 
     }
 }

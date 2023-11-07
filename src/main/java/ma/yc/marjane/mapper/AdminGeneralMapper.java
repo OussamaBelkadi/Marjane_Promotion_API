@@ -1,6 +1,6 @@
 package ma.yc.marjane.mapper;
 
-import ma.yc.marjane.dto.projectDto.AdminGeneralDto;
+import ma.yc.marjane.dto.AdminGeneralDto;
 import ma.yc.marjane.entity.AdminGeneral;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

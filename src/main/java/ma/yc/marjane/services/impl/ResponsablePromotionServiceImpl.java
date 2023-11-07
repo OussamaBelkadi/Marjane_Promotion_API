@@ -1,7 +1,6 @@
 package ma.yc.marjane.services.impl;
 
 import ma.yc.marjane.dto.*;
-import ma.yc.marjane.dto.projectDto.ResponsableDto;
 import ma.yc.marjane.entity.Promotion;
 import ma.yc.marjane.entity.Responsable;
 import ma.yc.marjane.mapper.ResponsablePromotoinMapper;
@@ -61,7 +60,7 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
 
         Optional<Responsable> responsable = this.responsableAuthRepository.findById(responsableId);
         return responsable.orElseThrow(
-                ()-> new ErrorResponse("Responsible not found", "")
+                ()-> new RuntimeException("Responsible not found")
         );
     }
 }

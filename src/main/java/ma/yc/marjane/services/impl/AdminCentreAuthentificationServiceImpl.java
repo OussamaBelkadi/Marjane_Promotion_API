@@ -1,7 +1,7 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
+import ma.yc.marjane.dto.AdminCentreDto;
 import ma.yc.marjane.entity.AdminCentre;
 import ma.yc.marjane.exception.ResourceNotFoundException;
 import ma.yc.marjane.mapper.AdminCentreMapper;

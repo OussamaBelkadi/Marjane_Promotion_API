@@ -1,8 +1,8 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
-import ma.yc.marjane.dto.projectDto.ProduitDto;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
+import ma.yc.marjane.dto.ProduitDto;
+import ma.yc.marjane.dto.PromotionDto;
 import ma.yc.marjane.entity.Produit;
 import ma.yc.marjane.entity.Promotion;
 import ma.yc.marjane.exception.ResourceNotFoundException;
