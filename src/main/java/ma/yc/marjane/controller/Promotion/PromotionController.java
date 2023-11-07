@@ -28,6 +28,7 @@ public class PromotionController {
 //        throw new RuntimeException("not implemented yet");
         return this.promotionService.getAll();
     }
+
     @PostMapping("/product")
     public ResponseEntity<?> promotionProduct(@RequestBody ProduitDto produitDto, PromotionDto promotionDto){
         try{
@@ -37,4 +38,5 @@ public class PromotionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
 }

@@ -26,6 +26,7 @@ public class Promotion {
     private Date updatedAt;
     private Double precentage;
     private String description;
+    @Enumerated(EnumType.STRING)
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
