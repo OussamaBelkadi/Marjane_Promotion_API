@@ -22,8 +22,8 @@ public class ApprouverOuRefuserPromotionController {
 
 
     @PostMapping()
-    public ResponsablePromotionResponse ApprouverOuRefuserPromotion(@RequestBody ResponsablePromotionRequest responsablePromotionRequest){
-        return null;
+    public ResponsablePromotionResponse approuverOuRefuserPromotion(@RequestBody ResponsablePromotionRequest responsablePromotionRequest){
+        return   this.responsablePromotionService.ApprouverOuRefuserPromotion(responsablePromotionRequest);
 
     }
 }

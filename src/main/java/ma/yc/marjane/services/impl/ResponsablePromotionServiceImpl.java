@@ -17,8 +17,8 @@ import java.util.Optional;
 @Service
 public class ResponsablePromotionServiceImpl implements ResponsablePromotionService {
 
-    private ResponsableAuthRepository responsableAuthRepository;
-    private PromotionRepository promotionRepository ;
+    private final ResponsableAuthRepository responsableAuthRepository;
+    private final PromotionRepository promotionRepository ;
     private ResponsablePromotoinMapper responsablePromotoinMapper ;
 
 
@@ -31,9 +31,8 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
     public ResponsablePromotionResponse ApprouverOuRefuserPromotion(ResponsablePromotionRequest responsablePromotionRequest) {
         // first find the responsible .
         ResponsablePromotionResponse response  = new ResponsablePromotionResponse();
-        if (this.findResponsableById(responsablePromotionRequest.getResponsableId()) == null){
-            throw new ErrorResponse("Responsible not found","");
-        }
+
+        this.findResponsableById(responsablePromotionRequest.getResponsableId());
 
         // :  loop into promotion and update their status
         if (responsablePromotionRequest.getPromotion().isEmpty()){
@@ -47,6 +46,9 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
                     response.getPromotionDtos().add(this.responsablePromotoinMapper.toDto(promotion.get()));
 
                 }
+//                else{
+//                    response.getPromotionDtos().add(promotionDto);
+//                }
             }
         }
         return response;
@@ -56,7 +58,10 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
         if (responsableId <1 ){
             return null;
         }
+
         Optional<Responsable> responsable = this.responsableAuthRepository.findById(responsableId);
-        return responsable.orElse(null);
+        return responsable.orElseThrow(
+                ()-> new ErrorResponse("Responsible not found", "")
+        );
     }
 }
