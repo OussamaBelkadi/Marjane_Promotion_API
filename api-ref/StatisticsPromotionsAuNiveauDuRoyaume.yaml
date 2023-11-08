@@ -1,7 +1,7 @@
 openapi: '3.0.0'
 info:
   description: les-statistics-promotions-au-niveau-du-royaume
-  title: consulter-les-statistics-promotions-au-niveau-du-royaume
+  title: Consulter les statistics promotions au niveau du royaume
   contact:
     name: marjane developers team
     email: elhajoujye@marjane.ma
@@ -18,12 +18,12 @@ paths:
   /statistics/promotions/royaume?status=ACCPETER :
     get:
       tags:
-        - statistics
+        - StatisticsPromotionsAuNiveauDuRoyaume
       summary: consulter-les-statistics-promotions-au-niveau-du-royaume
       operationId: getStatisticsPromotionsAuNiveauDuRoyaume
       parameters:
         - in: header
-          name: authorization
+          name: Authorization
           required: true
           schema:
             type: string
@@ -34,14 +34,14 @@ paths:
             type: string
       responses:
         '202':
-          description: la list de promoitons avec les Statistique inclue
+          description: la list des promotions avec les Statistique inclut
 
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PromotionStatistique'
+                  $ref: '#/components/schemas/PromotionStatistiques'
         '400':
           description: bad request
           content:
@@ -65,6 +65,8 @@ components:
         code:
           type:
             string
+          examples:
+            - 4004
         message:
           type: string
 
@@ -75,7 +77,7 @@ components:
         horodatage:
           type: string
           format: date-time
-    Promotion:
+    PromtionStatistique:
       type: object
       properties:
         status:
@@ -87,10 +89,22 @@ components:
         date_applique:
           type: string
           format: date
-        centre:
+        produits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProuitStatistic'
+    ProuitStatistic:
+      type: object
+      properties:
+        nom:
           type: string
+        prix:
+          type: number
+        quantite:
+          type:
+            number
 
-    PromotionStatistique:
+    PromotionStatistiques:
       type:
         object
       properties:
@@ -105,7 +119,7 @@ components:
         promoitons:
           type: array
           items:
-            $ref: '#/components/schemas/Promotion'
+            $ref: '#/components/schemas/PromtionStatistique'
     BadRequest:
       type: object
       properties:
