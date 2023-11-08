@@ -22,9 +22,9 @@ public class Produit {
     private int id ;
     private String nom ;
     private String description ;
-    private String image ;
-    private double prix ;
-    private int quantite ;
+    private String image;
+    private double prix;
+    private int quantite;
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;

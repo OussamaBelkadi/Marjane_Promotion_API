@@ -60,7 +60,7 @@ public class StatisticsPromotionsAuNiveauDuRoyaumeServiceImpl implements Statist
                 promotionStatistiques.add(promotionStatistique);
             }
             
-        PromotionStatistiques promotionStatistiquesList = new PromotionStatistiques();
+            PromotionStatistiques promotionStatistiquesList = new PromotionStatistiques();
             promotionStatistiquesList.setSize(promotionsList.get().size());
             promotionStatistiquesList.setStatus(statusPromotion);
             promotionStatistiquesList.getPromoitons().addAll(promotionStatistiques);

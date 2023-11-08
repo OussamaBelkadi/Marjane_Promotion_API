@@ -30,7 +30,7 @@ public class Promotion {
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
-    @OneToMany(mappedBy = "promotion")
+    @OneToMany(mappedBy = "promotion", fetch = FetchType.EAGER)
     private Collection<Produit> produits = new ArrayList<>();
 
 

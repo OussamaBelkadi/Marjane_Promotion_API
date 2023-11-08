@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.yc.marjane.enums.StatusPromotion;
 
-import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -16,8 +17,6 @@ import java.util.Date;
 public class PromotionStatistique {
 
     private StatusPromotion status ;
-    private Date dateApplique;
-    private String centre ;
-    private Date dateDebut;
-    private Date dateFin;
+    private Date date_applique;
+    private Collection<ProuitStatisticDto> produits = new ArrayList<>();
 }
