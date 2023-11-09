@@ -14,6 +14,6 @@ import java.util.Collection;
 @Builder
 public class ResponsablePromotionRequest {
     private Long responsableId ;
-    private Collection<ResponsablePromotionDto> promotion  = new ArrayList<>();
+    private Collection<ResponsablePromotionDto> promotionList  = new ArrayList<>();
 
 }

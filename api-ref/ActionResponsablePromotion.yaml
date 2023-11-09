@@ -19,7 +19,7 @@ tags:
     description: Approuve ou refuse une demande de promotion.
   - name: ConsutlerLesPormotion 
 paths:
-  /responsables-promotion:
+  /api/v1/responsables-promotion:
     post:
       tags: 
         - ApprouverOuRefuserPromotion

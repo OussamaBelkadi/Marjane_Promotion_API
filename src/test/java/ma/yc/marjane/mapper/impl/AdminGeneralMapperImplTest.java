@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdminGeneralMapperImplTest {
 
-    private Mapper<AdminGeneral , UserDto> adminGeneralMapper;
+    Mapper<AdminGeneral , UserDto> adminGeneralMapper;
     @BeforeEach
     void setUp() {
 //        this.adminGeneralMapper = new AdminGeneralMapperImpl();
