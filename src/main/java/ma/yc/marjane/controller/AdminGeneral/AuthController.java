@@ -50,7 +50,12 @@ public class AuthController {
         return false;
     }
 
-    @PostMapping("/deleteAdminCentre/{id}")
+    @PostMapping("/register")
+    public AdminCentreDto register(@RequestBody AdminCentreDto adminCentreDto){
+        return authentificationServiceAdminCentre.register(adminCentreDto);
+    }
+
+    @DeleteMapping("/deleteAdminCentre/{id}")
     public ResponseEntity<?> deleteAdminCentre(@PathVariable  AdminCentreDto adminCentreDto){
         try {
             authentificationServiceAdminCentre.deleteAdminCentre(adminCentreDto);
@@ -59,5 +64,6 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
 
 }

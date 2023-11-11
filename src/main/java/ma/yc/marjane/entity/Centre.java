@@ -39,6 +39,8 @@ public class Centre {
     private Collection<Rayon> rayons = new ArrayList<>();
     @OneToMany(mappedBy = "centre",cascade = CascadeType.ALL)
     private Collection<Responsable> responsables = new ArrayList<>();
+    @OneToMany
+    private Collection<Promotion> promotions = new ArrayList<>();
 
 
 

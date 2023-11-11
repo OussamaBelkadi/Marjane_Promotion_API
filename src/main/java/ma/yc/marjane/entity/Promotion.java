@@ -29,6 +29,9 @@ public class Promotion {
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
+    @ManyToOne
+    @JoinColumn(name = "centre_id")
+    private Centre centre;
     @OneToMany(mappedBy = "promotion")
     private Collection<Produit> produits = new ArrayList<>();
 
