@@ -27,7 +27,7 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = {"ma.yc.marjane"})
 @EnableWebMvc
-//@Import(GlobalExceptionHandler.class)
+@Import(GlobalExceptionHandler.class)
 @EnableJpaRepositories(basePackages = {"ma.yc.marjane.repository"})
 public class AppConfig  implements WebMvcConfigurer {
 
@@ -42,12 +42,11 @@ public class AppConfig  implements WebMvcConfigurer {
         configurer.defaultContentType(MediaType.APPLICATION_JSON);
 
     }
-//    @Override
-//    public void configureViewResolvers(ViewResolverRegistry registry) {
-//        registry.enableContentNegotiation(new MappingJackson2JsonView());
-//
-////        registry.freeMarker().cache(false);
-//    }
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.enableContentNegotiation(new MappingJackson2JsonView());
+
+    }
 
     @Bean
     EntityManagerFactory entityManagerFactory(){

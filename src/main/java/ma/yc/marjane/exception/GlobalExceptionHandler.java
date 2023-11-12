@@ -17,7 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.io.IOException;
 import java.util.Arrays;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {

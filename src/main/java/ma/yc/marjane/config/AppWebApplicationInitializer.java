@@ -13,29 +13,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppWebApplicationInitializer implements WebApplicationInitializer {
-  //  @Override
-//    protected Class<?>[] getRootConfigClasses() {
-//        return new Class[]{BasicDataSourceCfg.class, TransactionCfg.class};
-//    }
-//
-//    @Override
-//    protected Class<?>[] getServletConfigClasses() {
-//        return new Class[]{AppConfig.class};
-//    }
-//
-//    @Override
-//    protected String[] getServletMappings() {
-//        return new String[]{"/*"};
-//    }
-//
-//    @Override
-//    protected Filter[] getServletFilters() {
-//        final CharacterEncodingFilter cef = new CharacterEncodingFilter();
-//        cef.setEncoding("UTF-8");
-//        cef.setForceEncoding(true);
-//        return new Filter[]{new HiddenHttpMethodFilter(), cef};
-//    }
-
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
