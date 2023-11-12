@@ -1,5 +1,6 @@
 package ma.yc.marjane.services.impl;
 
+import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.PromotionStatistique;
 import ma.yc.marjane.dto.PromotionStatistiques;
 import ma.yc.marjane.entity.Promotion;
@@ -15,17 +16,21 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StatisticsPromotionsAuNiveauDuRoyaumeServiceImpl implements StatisticsPromotionsAuNiveauDuRoyaumeService {
 
 
 
 
-    private final StatisticsPromotionsAuNiveauDuRoyaumeRepository statisticsPromotionsAuNiveauDuRoyaumeRepository ;
+    private  StatisticsPromotionsAuNiveauDuRoyaumeRepository statisticsPromotionsAuNiveauDuRoyaumeRepository ;
 
+    @Autowired
     public StatisticsPromotionsAuNiveauDuRoyaumeServiceImpl(StatisticsPromotionsAuNiveauDuRoyaumeRepository statisticsPromotionsAuNiveauDuRoyaumeRepository  ) {
         this.statisticsPromotionsAuNiveauDuRoyaumeRepository = statisticsPromotionsAuNiveauDuRoyaumeRepository;
     }
 
+
+    @Transactional
     @Override
     public Collection<PromotionStatistiques> getStatisticsPromotionsAuNiveauDuRoyaume(String... status) {
 
@@ -55,7 +60,7 @@ public class StatisticsPromotionsAuNiveauDuRoyaumeServiceImpl implements Statist
         Collection<PromotionStatistique> promotionStatistiques = new ArrayList<>();
 
         if (promotionsList.isPresent()){
-            for (Promotion promotion:promotionsList.get()){
+            for (Promotion promotion : promotionsList.get()){
                 PromotionStatistique promotionStatistique  = PromotionStatistiqueMapper.promotionMapper.toDto(promotion);
                 promotionStatistiques.add(promotionStatistique);
             }

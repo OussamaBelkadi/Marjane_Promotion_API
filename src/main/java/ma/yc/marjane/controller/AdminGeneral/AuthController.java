@@ -28,6 +28,7 @@ public class AuthController {
         return this.authentificationService.login(adminGeneralDto);
     }
 
+
     @PostMapping("/register")
     public AdminGeneralDto register(@RequestBody AdminGeneralDto adminGeneralDto){
         AdminGeneralDto adminGeneralDto1 = adminGeneralDto;
@@ -52,12 +53,12 @@ public class AuthController {
         return false;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register/admin-centre")
     public AdminCentreDto register(@RequestBody AdminCentreDto adminCentreDto){
         return authentificationServiceAdminCentre.register(adminCentreDto);
     }
 
-    @DeleteMapping("/deleteAdminCentre/{id}")
+    @DeleteMapping("/admin-centre/{id}")
     public ResponseEntity<?> deleteAdminCentre(@PathVariable  AdminCentreDto adminCentreDto){
         try {
             authentificationServiceAdminCentre.deleteAdminCentre(adminCentreDto);

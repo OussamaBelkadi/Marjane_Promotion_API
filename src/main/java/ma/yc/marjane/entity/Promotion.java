@@ -16,7 +16,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 public class Promotion {
 
     @Id
@@ -26,14 +25,15 @@ public class Promotion {
     private Date updatedAt;
     private Double precentage;
     private String description;
+    @Enumerated(EnumType.STRING)
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "centre_id")
     private Centre centre;
-    @OneToMany(mappedBy = "promotion")
-    private Collection<Produit> produits = new ArrayList<>();
+    @OneToMany(mappedBy = "promotion",fetch = FetchType.EAGER)
+    private Collection<Produit> produits = new ArrayList<>() ;
 
 
 }

@@ -42,12 +42,12 @@ public class AppConfig  implements WebMvcConfigurer {
         configurer.defaultContentType(MediaType.APPLICATION_JSON);
 
     }
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.enableContentNegotiation(new MappingJackson2JsonView());
-
-//        registry.freeMarker().cache(false);
-    }
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        registry.enableContentNegotiation(new MappingJackson2JsonView());
+//
+////        registry.freeMarker().cache(false);
+//    }
 
     @Bean
     EntityManagerFactory entityManagerFactory(){

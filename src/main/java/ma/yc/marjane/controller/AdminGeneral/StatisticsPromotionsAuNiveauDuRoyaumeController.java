@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("api/v1/statistics/promotions/royaume")
+@RequestMapping("/api/v1/statistics/promotions/royaume")
 public class StatisticsPromotionsAuNiveauDuRoyaumeController {
 
     private StatisticsPromotionsAuNiveauDuRoyaumeService statisticsPromotionsAuNiveauDuRoyaumeService;

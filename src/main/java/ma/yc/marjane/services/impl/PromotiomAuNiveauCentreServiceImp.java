@@ -1,24 +1,30 @@
 package ma.yc.marjane.services.impl;
 
+import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.PromotionCentreRequestDto;
 import ma.yc.marjane.dto.PromotionStatistique;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
+import ma.yc.marjane.dto.PromotionDto;
 import ma.yc.marjane.entity.Promotion;
 import ma.yc.marjane.mapper.PromotiomMapper;
 import ma.yc.marjane.mapper.StatisticPromotionMapper;
 import ma.yc.marjane.repository.PromotionAuNiveauCentreRepository;
 import ma.yc.marjane.services.PromotiomAuNiveauCentreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-@Service
-public class PromotiomAuNiveauCentreServiceImp implements PromotiomAuNiveauCentreService {
-    private final PromotionAuNiveauCentreRepository promotionAuNiveauCentreRepository;
 
-    public PromotiomAuNiveauCentreServiceImp( PromotionAuNiveauCentreRepository promotionAuNiveauCentreRepository){
+@Transactional
+@Service("PromotiomAuNiveauCentreServiceImpl")
+public class PromotiomAuNiveauCentreServiceImp implements PromotiomAuNiveauCentreService {
+    private  PromotionAuNiveauCentreRepository promotionAuNiveauCentreRepository;
+
+    @Autowired
+    public PromotiomAuNiveauCentreServiceImp(PromotionAuNiveauCentreRepository promotionAuNiveauCentreRepository){
         this.promotionAuNiveauCentreRepository = promotionAuNiveauCentreRepository;
     }
 

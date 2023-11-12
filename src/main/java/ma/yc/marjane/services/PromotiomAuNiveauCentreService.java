@@ -1,8 +1,8 @@
 package ma.yc.marjane.services;
-
 import ma.yc.marjane.dto.PromotionCentreRequestDto;
+import ma.yc.marjane.dto.PromotionDto;
 import ma.yc.marjane.dto.PromotionStatistique;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
+import ma.yc.marjane.dto.PromotionDto;
 
 import java.util.Collection;
 
