@@ -35,8 +35,11 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public boolean logout(){
-        return authentificationService.logout();
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String token){
+        // TODO: 12/11/2023 verify token then logout when security is available
+         authentificationService.logout();
+
+         return ResponseEntity.ok("bye bye ");
     }
 
     @GetMapping("/resetPassword")

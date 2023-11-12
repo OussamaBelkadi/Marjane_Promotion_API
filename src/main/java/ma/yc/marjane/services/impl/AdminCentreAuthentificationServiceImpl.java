@@ -40,9 +40,7 @@ public class AdminCentreAuthentificationServiceImpl implements AuthentificationS
         if (result){
             return AdminCentreMapper.adminCentreMapper.toDto(adminCentreRslt);
         }
-        else {
-            return null;
-        }
+        throw new ResourceNotFoundException("Email ou mot de passe incorrect");
 
     }
 

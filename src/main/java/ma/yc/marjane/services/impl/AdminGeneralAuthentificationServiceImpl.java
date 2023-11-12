@@ -3,6 +3,7 @@ package ma.yc.marjane.services.impl;
 import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.AdminGeneralDto;
 import ma.yc.marjane.entity.AdminGeneral;
+import ma.yc.marjane.exception.ResourceNotFoundException;
 import ma.yc.marjane.mapper.AdminGeneralMapper;
 import ma.yc.marjane.repository.AdminGeneralAuthentificationRespository;
 import ma.yc.marjane.services.AuthentificationService;
@@ -34,9 +35,11 @@ public class AdminGeneralAuthentificationServiceImpl implements Authentification
                 adminGeneralDto.setPassword(user1.getPassword());
                 adminGeneralDto.setNom(user1.getNom());
                 return adminGeneralDto;
+            }else{
+                throw new ResourceNotFoundException(" mot de passe incorrect");
             }
         }
-        return null;
+        throw new ResourceNotFoundException("Email  incorrect");
     }
 
     @Override
