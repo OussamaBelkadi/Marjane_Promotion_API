@@ -14,4 +14,8 @@ public class Utils {
         return BCrypt.checkpw(password, hashedPassword);
     }
 
+    public static boolean verifyEmail(String validEmail) {
+        return validEmail.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+
+    }
 }

@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: Promotion api marjane responsable
+  description: L’hypermarché Marjane Maroc souhaite simplifier la gestion des promotions de ses produits au niveau de tous les centres du royaume. Pour se faire l’admin général du groupe Marjane va prendre en charge la gestion de chaque admin du centre par ville, cette dernière peut avoir 1 ou plusieurs centre et chaque centre est géré par un seul Admin. 
+  contact: 
+    name: marjane developers team
+    email: elhajoujye@marjane.ma
+    url: http://api.majrane.ma
+  version: 1.0.1
+
+
+servers:
+  - url: http://api.majrane.ma/v1
+    description: majrane api pour la gestion des promotion .
+  - url: http://localhost:8080/api/v1/promotion
+    description: majrane api pour la gestion des promotion en local
+tags: 
+  - name: ApprouverOuRefuserPromotion
+    description: Approuve ou refuse une demande de promotion.
+  - name: ConsutlerLesPormotion 
+paths:
+  /api/v1/responsables-promotion:
+    post:
+      tags: 
+        - ApprouverOuRefuserPromotion
+      summary: refuser ou approuve une pormoiton
+      description: Responsable refuser ou approuve une promotion
+      requestBody: 
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                responsableId:
+                  type: string
+                  description: responsable rayon identitfe 
+                  example: '6111207000121'
+                promotionList:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Promotion'
+      responses: 
+        '200':
+          description: si le operation bien executer
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ResponsablePromotionResponse'
+        '400':
+          description: bad request response
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code http de l'erreur
+        status:
+          type: string
+          description: Statut par defaut du code http
+        message:
+          type: string
+          description: Detail de l'erreur
+        parameters:
+          type: array
+          items:
+            type: string
+        horodatage:
+          type: string
+          format: date-time
+    Promotion:
+      type: object
+      properties: 
+        id:
+          type: integer
+          description: id promotion
+        status:
+          $ref: '#/components/schemas/StatusPromotion'
+    StatusPromotion:
+      type: string
+      enum:
+        - ACCPETER
+        - REFUSER
+        - EN_ATTENTE
+    ResponsablePromotionRequest:
+      type: object
+      properties:
+        responsableId:
+          type: integer
+        promotionList:
+          type: array
+          description: la list de promotion consurant une responsable de rayon 
+          items: 
+            $ref: '#/components/schemas/Promotion'
+          
+    ResponsablePromotionResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Promotion'
+      
+            
+        
+          

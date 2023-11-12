@@ -1,6 +1,6 @@
 package ma.yc.marjane.mapper;
 
-import ma.yc.marjane.dto.projectDto.RayonDto;
+import ma.yc.marjane.dto.RayonDto;
 import ma.yc.marjane.entity.Rayon;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

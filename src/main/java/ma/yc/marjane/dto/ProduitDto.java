@@ -1,4 +1,4 @@
-package ma.yc.marjane.dto.projectDto;
+package ma.yc.marjane.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
