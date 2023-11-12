@@ -26,11 +26,13 @@ public class Promotion {
     private Date updatedAt;
     private Double precentage;
     private String description;
-    @Enumerated(EnumType.STRING)
     private StatusPromotion status;
     private Date dateDebut;
     private Date dateFin;
-    @OneToMany(mappedBy = "promotion", fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "centre_id")
+    private Centre centre;
+    @OneToMany(mappedBy = "promotion")
     private Collection<Produit> produits = new ArrayList<>();
 
 

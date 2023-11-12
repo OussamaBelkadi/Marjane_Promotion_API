@@ -16,4 +16,5 @@ public class ProduitDto {
     private String image ;
     private double prix ;
     private int quantite ;
+    private long id_centre;
 }
