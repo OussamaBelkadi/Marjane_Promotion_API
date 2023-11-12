@@ -1,4 +1,4 @@
-package ma.yc.marjane.dto.projectDto;
+package ma.yc.marjane.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class CategorieDto {
+public class ResponsableDto {
     private String nom;
-    private String description;
-    private String image;
-    private String slug;
+    private String prenom;
+    private String email;
+    private String password;
+    private String username;
 }

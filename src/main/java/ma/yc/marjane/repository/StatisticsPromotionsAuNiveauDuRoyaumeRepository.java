@@ -6,13 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 @Repository
-public interface PromotionRepository extends JpaRepository<Promotion,Long> {
-    public Promotion findByDescription(String description);
-    public Collection<Promotion> findAllByStatus(StatusPromotion status);
+public interface StatisticsPromotionsAuNiveauDuRoyaumeRepository extends JpaRepository<Promotion ,Long> {
 
-
-
+    public Optional<Collection<Promotion>> findAllByStatus(StatusPromotion statusPromotion);
 }

@@ -1,0 +1,148 @@
+openapi: '3.0.0'
+info:
+  description: les-statistics-promotions-au-niveau-du-royaume
+  title: Consulter les statistics promotions au niveau du royaume
+  contact:
+    name: marjane developers team
+    email: elhajoujye@marjane.ma
+    url: http://api.majrane.ma
+  version: 1.5.0
+
+servers:
+  - url: http://api.majrane.ma/v1
+    description: majrane api pour la gestion des promotion .
+  - url: http://localhost:8080/api/v1/promotion
+    description: majrane api pour la gestion des promotion en local
+
+paths:
+  /statistics/promotions/royaume?status=ACCPETER :
+    get:
+      tags:
+        - StatisticsPromotionsAuNiveauDuRoyaume
+      summary: consulter-les-statistics-promotions-au-niveau-du-royaume
+      operationId: getStatisticsPromotionsAuNiveauDuRoyaume
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: status
+          required: false
+          schema:
+            type: string
+      responses:
+        '202':
+          description: la list des promotions avec les Statistique inclut
+
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PromotionStatistiques'
+        '400':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '505':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+
+
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type:
+            string
+          examples:
+            - 4004
+        message:
+          type: string
+
+        parameters:
+          type: array
+          items:
+            type: string
+        horodatage:
+          type: string
+          format: date-time
+    PromtionStatistique:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - ACCPETER
+            - REFUSER
+            - EN_ATTENTE
+        date_applique:
+          type: string
+          format: date
+        produits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProuitStatistic'
+    ProuitStatistic:
+      type: object
+      properties:
+        nom:
+          type: string
+        prix:
+          type: number
+        quantite:
+          type:
+            number
+
+    PromotionStatistiques:
+      type:
+        object
+      properties:
+        size:
+          type: number
+        status:
+          type: string
+          enum:
+            - ACCPETER
+            - REFUSER
+            - EN_ATTENTE
+        promoitons:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromtionStatistique'
+    BadRequest:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A brief error message.
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional details about the error.
+    NotFound:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A brief error message indicating the resource was not found.
+    InternalServerError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A brief error message indicating an internal server error occurred.
+        details:
+          type: string
+          description: Additional details or error information for debugging purposes.

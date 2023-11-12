@@ -1,7 +1,7 @@
 package ma.yc.marjane.services.impl;
 
 import jakarta.transaction.Transactional;
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
+import ma.yc.marjane.dto.AdminCentreDto;
 import ma.yc.marjane.entity.AdminCentre;
 import ma.yc.marjane.exception.ResourceNotFoundException;
 import ma.yc.marjane.mapper.AdminCentreMapper;
@@ -40,9 +40,7 @@ public class AdminCentreAuthentificationServiceImpl implements AuthentificationS
         if (result){
             return AdminCentreMapper.adminCentreMapper.toDto(adminCentreRslt);
         }
-        else {
-            return null;
-        }
+        throw new ResourceNotFoundException("Email ou mot de passe incorrect");
 
     }
 

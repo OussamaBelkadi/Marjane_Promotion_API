@@ -1,13 +1,16 @@
 package ma.yc.marjane.dto;
 
-public  class ErrorResponse extends RuntimeException {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public  class ErrorResponse {
         private String message;
-        private String details;
-
-        public ErrorResponse(String message, String details) {
-            this.message = message;
-            this.details = details;
-        }
-
-        // Getters and setters for message and details
-    }
+        private String exception;
+        private String url;
+        private HttpStatus status;
+}

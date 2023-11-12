@@ -1,7 +1,7 @@
 package ma.yc.marjane.services.impl;
 
+import jakarta.transaction.Transactional;
 import ma.yc.marjane.dto.*;
-import ma.yc.marjane.dto.projectDto.ResponsableDto;
 import ma.yc.marjane.entity.Promotion;
 import ma.yc.marjane.entity.Responsable;
 import ma.yc.marjane.mapper.ResponsablePromotoinMapper;
@@ -15,17 +15,18 @@ import java.util.Optional;
 
 
 @Service
+@Transactional
 public class ResponsablePromotionServiceImpl implements ResponsablePromotionService {
 
     private final ResponsableAuthRepository responsableAuthRepository;
     private final PromotionRepository promotionRepository ;
     private ResponsablePromotoinMapper responsablePromotoinMapper ;
 
-
     @Autowired
     public ResponsablePromotionServiceImpl(ResponsableAuthRepository responsableAuthRepository,PromotionRepository promotionRepository) {
         this.responsableAuthRepository = responsableAuthRepository;
         this.promotionRepository = promotionRepository;
+        this.responsablePromotoinMapper = ResponsablePromotoinMapper.INSTANCE;
     }
     @Override
     public ResponsablePromotionResponse ApprouverOuRefuserPromotion(ResponsablePromotionRequest responsablePromotionRequest) {
@@ -35,10 +36,10 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
         this.findResponsableById(responsablePromotionRequest.getResponsableId());
 
         // :  loop into promotion and update their status
-        if (responsablePromotionRequest.getPromotion().isEmpty()){
+        if (responsablePromotionRequest.getPromotionList().isEmpty()){
             return response;
         }else{
-            for(ResponsablePromotionDto promotionDto : responsablePromotionRequest.getPromotion()){
+            for(ResponsablePromotionDto promotionDto : responsablePromotionRequest.getPromotionList()){
                 Optional<Promotion> promotion = this.promotionRepository.findById(promotionDto.getId());
                 if (promotion.isPresent()){
                     promotion.get().setStatus(promotionDto.getStatus());
@@ -61,7 +62,7 @@ public class ResponsablePromotionServiceImpl implements ResponsablePromotionServ
 
         Optional<Responsable> responsable = this.responsableAuthRepository.findById(responsableId);
         return responsable.orElseThrow(
-                ()-> new ErrorResponse("Responsible not found", "")
+                ()-> new RuntimeException("Responsible not found")
         );
     }
 }

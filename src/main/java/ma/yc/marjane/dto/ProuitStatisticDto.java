@@ -1,4 +1,4 @@
-package ma.yc.marjane.dto.projectDto;
+package ma.yc.marjane.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class ProduitDto {
-    private int id_pdt;
+public class ProuitStatisticDto {
     private String nom ;
-    private String description ;
-    private String image ;
     private double prix ;
     private int quantite ;
 }

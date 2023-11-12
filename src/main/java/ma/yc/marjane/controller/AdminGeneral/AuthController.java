@@ -1,8 +1,7 @@
 package ma.yc.marjane.controller.AdminGeneral;
 
-import jakarta.annotation.Resource;
-import ma.yc.marjane.dto.projectDto.AdminCentreDto;
-import ma.yc.marjane.dto.projectDto.AdminGeneralDto;
+import ma.yc.marjane.dto.AdminCentreDto;
+import ma.yc.marjane.dto.AdminGeneralDto;
 import ma.yc.marjane.exception.ResourceNotFoundException;
 import ma.yc.marjane.services.AuthentificationService;
 import ma.yc.marjane.services.AuthentificationServiceAdmCtr;
@@ -36,8 +35,11 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public boolean logout(){
-        return authentificationService.logout();
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String token){
+        // TODO: 12/11/2023 verify token then logout when security is available
+         authentificationService.logout();
+
+         return ResponseEntity.ok("bye bye ");
     }
 
     @GetMapping("/resetPassword")

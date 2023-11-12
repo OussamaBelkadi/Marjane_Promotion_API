@@ -1,7 +1,6 @@
 package ma.yc.marjane.mapper;
 
 import ma.yc.marjane.dto.ResponsablePromotionDto;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
 import ma.yc.marjane.entity.Promotion;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

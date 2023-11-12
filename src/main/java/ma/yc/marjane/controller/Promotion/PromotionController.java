@@ -1,8 +1,8 @@
 package ma.yc.marjane.controller.Promotion;
 
 
-import ma.yc.marjane.dto.projectDto.ProduitDto;
-import ma.yc.marjane.dto.projectDto.PromotionDto;
+import ma.yc.marjane.dto.ProduitDto;
+import ma.yc.marjane.dto.PromotionDto;
 import ma.yc.marjane.exception.ResourceNotFoundException;
 import ma.yc.marjane.services.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
